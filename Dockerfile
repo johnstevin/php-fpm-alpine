@@ -1,6 +1,6 @@
 FROM php:7.4.12-fpm-alpine3.12
 
-LABEL maintainer="Stevin.John <stevin.john@qq.com>"
+LABEL maintainer="STEVIN.JOHN <stevin.john@qq.com>"
 
 ENV TIMEZONE Asia/Shanghai
 
@@ -30,4 +30,4 @@ ADD html/ /var/www/html/
 
 RUN chmod 755 /start.sh
 
-CMD ["/start.sh"]
+CMD ["/bin/sh","/start.sh"]
