@@ -24,10 +24,10 @@ RUN apk update && \
 
 ADD conf/supervisord.conf /etc/supervisord.conf
 
-ADD scripts/start.sh /root/start.sh
-
-RUN chmod 755 /root/start.sh
+ADD scripts/start.sh /start.sh
 
 ADD html/ /var/www/html/
 
-CMD ["/root/start.sh"]
+RUN chmod 755 /start.sh
+
+CMD ["/start.sh"]
