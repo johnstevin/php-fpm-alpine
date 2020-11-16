@@ -1,4 +1,4 @@
-# 说明
+# 基础镜像
 
 ```sh
 docker build -t php-fpm-alpine .
@@ -43,4 +43,26 @@ server{
     }
 
 }
+```
+
+# 上层应用
+
+1. 运行项目内的Dockerfile生成新的镜像
+
+`示例html目录下面`
+
+```sh
+docker build --no-cache -t pfa-test-project .
+```
+
+2. 然后启动项目容器
+
+```sh
+docker run -d -p 9001:9000 --name pfa-test-project pfa-test-project
+```
+
+`若测试所用挂载项目`
+
+```sh
+docker run -d -p 9001:9000 --name pfa-test-project php-fpm-alpine
 ```
