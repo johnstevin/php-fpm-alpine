@@ -64,5 +64,5 @@ docker run -d -p 9001:9000 --name pfa-test-project pfa-test-project
 `若测试所用挂载项目`
 
 ```sh
-docker run -d -p 9001:9000 --name pfa-test-project php-fpm-alpine
+docker run -d -p 9001:9000 -v /Users/mac/Develop/html/`<project>`/src/:/var/www/html/ --name pfa-test-project php-fpm-alpine
 ```
