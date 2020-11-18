@@ -32,3 +32,20 @@ ADD html/ /var/www/html/
 RUN chmod 755 /start.sh
 
 CMD ["/bin/sh","/start.sh"]
+
+# Test install ext
+#apk add libxml2 libxml2-dev
+#docker-php-ext-install soap
+#docker-php-ext-enable soap
+
+#apk add libxslt-dev
+#docker-php-ext-install xsl
+#docker-php-ext-enable xsl
+
+#apk add libzip-dev
+#docker-php-ext-install zip
+
+#apk add icu-dev
+#docker-php-ext-install intl
+
+#docker-php-ext-install exif

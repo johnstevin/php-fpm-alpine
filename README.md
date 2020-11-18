@@ -66,3 +66,17 @@ docker run -d -p 9001:9000 --name pfa-test-project pfa-test-project
 ```sh
 docker run -d -p 9001:9000 -v /Users/mac/Develop/html/`<project>`/src/:/var/www/html/ --name pfa-test-project php-fpm-alpine
 ```
+
+加载环境变量
+
+```sh
+docker run -d -p 9001:9000 【-v /Users/mac/Develop/html/easeus-uoss/src/:/var/www/html/] [-e 'SET_COMPOSER_MIRRORS=1'] [-e 'RUN_COMPOSER_INSTALL=1'] --name pfa-<project> php-fpm-alpine
+```
+
+常用变量
+
+- SET_COMPOSER_MIRRORS=1
+- RUN_COMPOSER_INSTALL=1
+- RUN_COMPOSER_CMD_CACHE_CLEAR=1
+- RUN_COMPOSER_CMD_OPTIMIZE=1
+
