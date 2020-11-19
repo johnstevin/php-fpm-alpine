@@ -10,6 +10,44 @@ docker run -it -p 9000:9000 --name php-test php-fpm-alpine sh
 docker run -d -p 9000:9000 --name php-test php-fpm-alpine
 ```
 
+# 上层应用
+
+1. 运行项目内的Dockerfile生成新的镜像
+
+> `示例html目录下面`
+
+```sh
+docker build --no-cache -t pfa-test-project .
+```
+
+2. 然后启动项目容器
+
+```sh
+docker run -d -p 9001:9000 --name pfa-test-project pfa-test-project
+```
+
+> `若测试所用挂载项目`
+
+```sh
+docker run -d -p 9001:9000 -v /Users/mac/Develop/html/`<project>`/src/:/var/www/html/ --name pfa-test-project php-fpm-alpine
+```
+
+> `加载环境变量`
+
+```sh
+docker run -d -p 9001:9000 【-v /Users/mac/Develop/html/`<project>`/src/:/var/www/html/] [-e 'SET_COMPOSER_MIRRORS=1'] [-e 'RUN_COMPOSER_INSTALL=1'] --name pfa-<project> php-fpm-alpine
+```
+
+常用变量
+
+- SET_COMPOSER_MIRRORS=1
+- RUN_COMPOSER_INSTALL=1
+- RUN_COMPOSER_CMD_CACHE_CLEAR=1
+- RUN_COMPOSER_CMD_OPTIMIZE=1
+- RUN_SCRIPTS=1
+
+
+
 `nginx配置`
 
 ```sh
@@ -44,40 +82,3 @@ server{
 
 }
 ```
-
-# 上层应用
-
-1. 运行项目内的Dockerfile生成新的镜像
-
-`示例html目录下面`
-
-```sh
-docker build --no-cache -t pfa-test-project .
-```
-
-2. 然后启动项目容器
-
-```sh
-docker run -d -p 9001:9000 --name pfa-test-project pfa-test-project
-```
-
-`若测试所用挂载项目`
-
-```sh
-docker run -d -p 9001:9000 -v /Users/mac/Develop/html/`<project>`/src/:/var/www/html/ --name pfa-test-project php-fpm-alpine
-```
-
-加载环境变量
-
-```sh
-docker run -d -p 9001:9000 【-v /Users/mac/Develop/html/`<project>`/src/:/var/www/html/] [-e 'SET_COMPOSER_MIRRORS=1'] [-e 'RUN_COMPOSER_INSTALL=1'] --name pfa-<project> php-fpm-alpine
-```
-
-常用变量
-
-- SET_COMPOSER_MIRRORS=1
-- RUN_COMPOSER_INSTALL=1
-- RUN_COMPOSER_CMD_CACHE_CLEAR=1
-- RUN_COMPOSER_CMD_OPTIMIZE=1
-- RUN_SCRIPTS=1
-
