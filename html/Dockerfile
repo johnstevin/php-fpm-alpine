@@ -1,8 +1,8 @@
-FROM registry.cn-hangzhou.aliyuncs.com/cool2rong/php-fpm-alpine:1.0.1
+FROM php-fpm-alpine
 
 ADD src/ /var/www/html/
 
 ADD supervisor_d/ /etc/supervisor.d/
 
-RUN chmod -R 755 /var/www/html/storage && \
-    chown -R www-data:www-data /var/www/html/storage
+#RUN chmod -R 755 /var/www/html/storage && \
+#    chown -R www-data:www-data /var/www/html/storage
