@@ -10,15 +10,15 @@ do
 			docker rmi $(docker images -f "dangling=true" -q)
 	        ;;
         a)
-			cd /Users/mac/Docker/php-fpm-alpine
-			docker build --no-cache -t php-fpm-alpine .
+			cd /Users/mac/Develop/docker/php-fpm-alpine
+			docker build -t php-fpm-alpine .
 			;;
 		b)
-			cd /Users/mac/Docker/php-fpm-alpine/html
+			cd /Users/mac/Develop/docker/php-fpm-alpine/html
 			docker build --no-cache -t pfa-test-project .
 			;;
 		d)
-			docker run -d -p 9001:9000 -e "ENABLE_COMPOSER_MIRRORS=true" -e "RUN_COMPOSER_INSTALL=true" --name pfa-test-project pfa-test-project
+			docker run -d -p 9010:9000 -v /Users/mac/Develop/docker/php-fpm-alpine/html/src/:/var/www/html/ --name pfa-test-project pfa-test-project
 			;;
 		e)
 			docker stop pfa-test-project

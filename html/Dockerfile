@@ -1,8 +1,11 @@
 FROM php-fpm-alpine
 
+ENV ENABLE_COMPOSER_MIRRORS true
+ENV RUN_COMPOSER_INSTALL true
+#ENV RUN_COMPOSER_CMD_CACHE_CLEAR true
+#ENV RUN_COMPOSER_CMD_OPTIMIZE true
+#ENV RUN_SCRIPTS true
+
 ADD src/ /var/www/html/
-
 ADD supervisor_d/ /etc/supervisor.d/
-
-#RUN chmod -R 755 /var/www/html/storage && \
-#    chown -R www-data:www-data /var/www/html/storage
+ADD scripts/ ${RUN_SCRIPTS_DIRECTORY}
