@@ -35,12 +35,12 @@ docker run -d -p 9001:9000 -v /Users/mac/Develop/html/`<project>`/src/:/var/www/
 > `加载环境变量`
 
 ```sh
-docker run -d -p 9001:9000 【-v /Users/mac/Develop/html/`<project>`/src/:/var/www/html/] [-e 'SET_COMPOSER_MIRRORS=1'] [-e 'RUN_COMPOSER_INSTALL=1'] --name pfa-<project> php-fpm-alpine
+docker run -d -p 9001:9000 【-v /Users/mac/Develop/html/`<project>`/src/:/var/www/html/] [-e 'ENABLE_COMPOSER_MIRRORS=1'] [-e 'RUN_COMPOSER_INSTALL=1'] --name pfa-<project> php-fpm-alpine
 ```
 
 常用变量
 
-- SET_COMPOSER_MIRRORS=1
+- ENABLE_COMPOSER_MIRRORS=1
 - RUN_COMPOSER_INSTALL=1
 - RUN_COMPOSER_CMD_CACHE_CLEAR=1
 - RUN_COMPOSER_CMD_OPTIMIZE=1
@@ -63,6 +63,13 @@ server{
         # First attempt to serve request as file, then
         # as directory, then fall back to index.html
         # try_files $uri $uri/ =404;
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    # 没有测试
+    location /_debugbar/ {
+        alias /tmp/;
+        #try_files $uri /test/fallback?$args;
         try_files $uri $uri/ /index.php?$query_string;
     }
 
