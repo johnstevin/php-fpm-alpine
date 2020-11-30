@@ -16,4 +16,5 @@ RUN echo "======>Set composer mirrors" && composer config -g repo.packagist comp
     echo "======>Enter to workdir" &&cd /var/www/html/ && \
     echo "======>Run composer install" && composer install && \
     echo "======>Run composer cmd-cache-clear" && composer cmd-cache-clear && \
-    echo "======>Run composer cmd-optimize" && composer cmd-optimize
+    echo "======>Run composer cmd-optimize" && composer cmd-optimize && \
+    echo "======>Run composer clear-cache" && composer clear-cache

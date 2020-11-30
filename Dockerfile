@@ -8,9 +8,9 @@ ENV RUN_SCRIPTS_DIRECTORY /var/scripts/
 ADD conf/repositories /etc/apk/repositories
 
 RUN apk update && \
-	apk add --no-cache gcc musl-dev linux-headers libffi-dev augeas-dev make autoconf openssl-dev zlib zlib-dev libpng libpng-dev supervisor tzdata freetype-dev libjpeg-turbo-dev && \
+	apk add --no-cache gcc musl-dev linux-headers libffi-dev augeas-dev make autoconf openssl-dev zlib zlib-dev libpng libpng-dev supervisor tzdata freetype-dev libjpeg-turbo-dev libzip-dev && \
 	docker-php-ext-configure gd --with-freetype --with-jpeg && \
-	docker-php-ext-install bcmath opcache pcntl gd mysqli sockets pdo pdo_mysql && \
+	docker-php-ext-install bcmath opcache pcntl gd mysqli sockets pdo pdo_mysql zip && \
 	pecl channel-update pecl.php.net && \
 	pecl install mongodb && \
     docker-php-ext-enable mongodb && \
