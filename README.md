@@ -45,6 +45,7 @@ docker run -d -p 9001:9000 【-v /Users/mac/Develop/html/`<project>`/src/:/var/w
 - RUN_COMPOSER_CMD_CACHE_CLEAR=1
 - RUN_COMPOSER_CMD_OPTIMIZE=1
 - RUN_SCRIPTS=1
+- ENABLE_XDEBUG=1
 
 
 
