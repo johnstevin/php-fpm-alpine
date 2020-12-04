@@ -86,7 +86,13 @@ fi
 # Run composer cmd-optimize
 if [ ! -z "$RUN_COMPOSER_CMD_OPTIMIZE" ] ; then
   	echo "======>Run composer cmd-optimize"
-	cd /var/www/html/ && composer cmd-optimize
+	  cd /var/www/html/ && composer cmd-optimize
+fi
+
+# Run composer cmd-optimize
+if [ ! -z "$RUN_COMPOSER_CLEAR_CACHE" ] ; then
+    echo "======>Run composer clear-cache"
+    cd /var/www/html/ && composer clear-cache
 fi
 
 # Run project scripts

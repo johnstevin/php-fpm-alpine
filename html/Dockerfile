@@ -6,6 +6,7 @@ ENV RUN_COMPOSER_INSTALL true
 #ENV RUN_COMPOSER_CMD_CACHE_CLEAR true
 #ENV RUN_COMPOSER_CMD_OPTIMIZE true
 #ENV RUN_SCRIPTS true
+#ENV RUN_COMPOSER_CLEAR_CACHE=1
 
 ADD src/ /var/www/html/
 ADD supervisor_d/ /etc/supervisor.d/
