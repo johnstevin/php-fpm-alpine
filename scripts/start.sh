@@ -16,6 +16,11 @@ if [ ! -z "$PHP_UPLOAD_MAX_FILESIZE" ]; then
     sed -i "s/upload_max_filesize = 2M/upload_max_filesize= ${PHP_UPLOAD_MAX_FILESIZE}M/g" /usr/local/etc/php/php.ini
 fi
 
+# Increase the max_execution_time
+if [ ! -z "$PHP_MAX_EXECUTION_TIME" ]; then
+    sed -i "s/max_execution_time = 30/max_execution_time= ${PHP_MAX_EXECUTION_TIME}/g" /usr/local/etc/php/php.ini
+fi
+
 if [ ! -z "$FPM_PM_MAX_CHILDREN" ]; then
     sed -i "s/pm.max_children = 5/pm.max_children = ${FPM_PM_MAX_CHILDREN}/g" /usr/local/etc/php-fpm.d/www.conf
 fi
