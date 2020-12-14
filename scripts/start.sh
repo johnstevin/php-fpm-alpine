@@ -37,6 +37,23 @@ if [ ! -z "$FPM_PM_MAX_SPARE_SERVERS" ]; then
     sed -i "s/pm.max_spare_servers = 3/pm.max_spare_servers = ${FPM_PM_MAX_SPARE_SERVERS}/g" /usr/local/etc/php-fpm.d/www.conf
 fi
 
+# Increase the opcache
+if [ ! -z "$OPCACHE_ENABLE" ]; then
+    sed -i "s/opcache.enable=1/opcache.enable=${OPCACHE_ENABLE}/g" /usr/local/etc/php/php.ini
+fi
+
+if [ ! -z "$OPCACHE_ENABLE_CLI" ]; then
+    sed -i "s/opcache.enable_cli=0/opcache.enable_cli=${OPCACHE_ENABLE_CLI}/g" /usr/local/etc/php/php.ini
+fi
+
+if [ ! -z "$OPCACHE_VALIDATE_TIMESTAMPS" ]; then
+    sed -i "s/opcache.validate_timestamps=1/opcache.validate_timestamps=${OPCACHE_VALIDATE_TIMESTAMPS}/g" /usr/local/etc/php/php.ini
+fi
+
+if [ ! -z "$OPCACHE_REVALIDATE_FREQ" ]; then
+    sed -i "s/opcache.revalidate_freq=2/opcache.revalidate_freq=${OPCACHE_REVALIDATE_FREQ}/g" /usr/local/etc/php/php.ini
+fi
+
 # Enable xdebug
 XdebugFile='/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini'
 if [[ "$ENABLE_XDEBUG" == "1" ]] ; then
@@ -79,7 +96,7 @@ fi
 # Run composer install
 if [ ! -z "$RUN_COMPOSER_INSTALL" ]; then
   	echo "======>Run composer install"
-  	cd /var/www/html/ && composer install
+  	cd /var/www/html/ && composer install -o --no-dev --classmap-authoritative
 fi
 
 # Run composer cmd-cache-clear
