@@ -1,0 +1,11 @@
+ARG BASETAG=$BASETAG
+
+FROM baseimg/uom:$BASETAG
+
+ADD .env /var/www/html/
+
+RUN echo "======>Enter to workdir" && cd /var/www/html/ && \
+    echo "======>Run composer dump-autoload" && composer dump-autoload -o --no-dev --classmap-authoritative && \
+    echo "======>Run composer cmd-cache-clear" && composer cmd-cache-clear && \
+    echo "======>Run composer cmd-optimize" && composer cmd-optimize && \
+    echo "======>Run composer clear-cache" && composer clear-cache
